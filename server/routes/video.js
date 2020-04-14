@@ -64,9 +64,10 @@ router.post('/thumbnail', (req, res) => {
     let fileDuration = ""
 
     // 비디오 정보 가져오기
-    ffmpeg.ffprobe(req.body.filePath, function(err, metadata){
-        console.dir(metadata);
+    ffmpeg.ffprobe(req.body.url, function (err, metadata) {
+        console.dir(metadata); // all metadata
         console.log(metadata.format.duration);
+        
         fileDuration = metadata.format.duration
     });
 
