@@ -56,6 +56,20 @@ router.post('/uploadVideo', (req, res) => {
 })
 
 
+router.get('/getVideos', (req, res) => {
+
+    // 비디오를 DB 에서 가져와서 클라이언트에 보낸다.
+    
+    Video.find()
+        .populate('writer')
+        .exec((err, videos) => {
+            if(err) return res.status(400).send(err);
+            res.status(200).json({ success:true, videos })
+        })
+
+})
+
+
 router.post('/thumbnail', (req, res) => {
 
     // 썸내일 생성 하고 비디오 러닝타임도 가져오기
@@ -64,7 +78,7 @@ router.post('/thumbnail', (req, res) => {
     let fileDuration = ""
 
     // 비디오 정보 가져오기
-    ffmpeg.ffprobe(req.body.url, function (err, metadata) {
+    ffmpeg.ffprobe(req.body.filePath, function(err, metadata){
         console.dir(metadata); // all metadata
         console.log(metadata.format.duration);
         
