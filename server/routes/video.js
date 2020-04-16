@@ -40,7 +40,7 @@ router.post('/uploadfiles', (req, res) => {
         return res.json({ success: true, url: res.req.file.path, fileName: res.req.file.filename })
     })
 
-})
+});
 
 router.post('/uploadVideo', (req, res) => {
 
@@ -53,21 +53,21 @@ router.post('/uploadVideo', (req, res) => {
         res.status(200),json({ success: true })
     })
 
-})
+});
 
 
-router.get('/getVideos', (req, res) => {
+router.get('/getVideoDetail', (req, res) => {
 
     // 비디오를 DB 에서 가져와서 클라이언트에 보낸다.
     
-    Video.find()
+    Video.findOne({ "_id" : req.body.videoId })
         .populate('writer')
-        .exec((err, videos) => {
+        .exec((err, videoDetail) => {
             if(err) return res.status(400).send(err);
-            res.status(200).json({ success:true, videos })
+            return res.status(200).json({ success: true, videoDetail })
         })
 
-})
+});
 
 
 router.post('/thumbnail', (req, res) => {
@@ -109,6 +109,6 @@ router.post('/thumbnail', (req, res) => {
         // '%b: input basename (filename w/o extension)
         filename: 'thumbnail-%b.png'
     })
-})
+});
 
 module.exports = router;
