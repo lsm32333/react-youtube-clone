@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { List, Avatar, Row, Col } from "antd";
 import axios from "axios";
 import SideVideo from "./Sections/SideVideo";
-import Subscriber from "./Sections/Subscriber";
+import Subscriber from "./Sections/Subscribe";
 import Comments from "./Sections/Comments";
 import LikeDislikes from "./Sections/LikeDislikes";
 function DetailVideoPage(props) {
