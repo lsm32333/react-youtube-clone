@@ -86,7 +86,7 @@ router.post('/thumbnail', (req, res) => {
     });
 
     // 썸네일 생성
-    ffmpeg(req.body.url)
+    Ffmpeg(req.body.url)
     .on('filenames', function (filenames) {
         console.log('Will generate ' + filenames.join(', '))
         console.log(filenames)
